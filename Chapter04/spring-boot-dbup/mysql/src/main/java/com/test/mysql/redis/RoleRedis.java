@@ -16,12 +16,10 @@ public class RoleRedis {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
-
     public void add(String key, Long time, List<Role> roles) {
         Gson gson = new Gson();
         redisTemplate.opsForValue().set(key, gson.toJson(roles), time, TimeUnit.MINUTES);
     }
-
 
     public List<Role> getList(String key) {
         Gson gson = new Gson();

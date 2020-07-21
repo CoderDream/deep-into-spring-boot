@@ -16,13 +16,22 @@ public class DepartmentRedis {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
-
-    public void add(String key, Long time, List<Department> deparments) {
+    /**
+     *
+     * @param key
+     * @param time
+     * @param departments
+     */
+    public void add(String key, Long time, List<Department> departments) {
         Gson gson = new Gson();
-        redisTemplate.opsForValue().set(key, gson.toJson(deparments), time, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(key, gson.toJson(departments), time, TimeUnit.MINUTES);
     }
 
-
+    /**
+     *
+     * @param key
+     * @return
+     */
     public List<Department> getList(String key) {
         Gson gson = new Gson();
         List<Department> ts = null;

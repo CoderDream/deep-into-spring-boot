@@ -16,18 +16,33 @@ public class UserRedis {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
-
+    /**
+     *
+     * @param key
+     * @param time
+     * @param user
+     */
     public void add(String key, Long time, User user) {
         Gson gson = new Gson();
         redisTemplate.opsForValue().set(key, gson.toJson(user), time, TimeUnit.MINUTES);
     }
 
+    /**
+     *
+     * @param key
+     * @param time
+     * @param users
+     */
     public void add(String key, Long time, List<User> users) {
         Gson gson = new Gson();
         redisTemplate.opsForValue().set(key, gson.toJson(users), time, TimeUnit.MINUTES);
     }
 
-
+    /**
+     *
+     * @param key
+     * @return
+     */
     public User get(String key) {
         Gson gson = new Gson();
         User user = null;
@@ -37,6 +52,11 @@ public class UserRedis {
         return user;
     }
 
+    /**
+     *
+     * @param key
+     * @return
+     */
     public List<User> getList(String key) {
         Gson gson = new Gson();
         List<User> ts = null;
@@ -46,6 +66,10 @@ public class UserRedis {
         return ts;
     }
 
+    /**
+     *
+     * @param key
+     */
     public void delete(String key){
         redisTemplate.opsForValue().getOperations().delete(key);
     }
