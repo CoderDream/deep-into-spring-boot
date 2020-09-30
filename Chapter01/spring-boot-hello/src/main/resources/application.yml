@@ -3,3 +3,24 @@ server:
   port: 80
   tomcat:
     uri-encoding: UTF-8
+#
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#    # 默认日志文件名
+#  file: /var/log/springboot.log
+#  # 默认日志路径
+#  path: /var/log/
+#  # logback.xml路径，默认为classpath:logback.xml
+#  # config: ./logback.xml
+
+# slf4j日志配置
+logging:
+  # 配置级别
+  level:
+    #分包配置级别，即不同的目录下可以使用不同的级别
+    springboot.example: trace
+  # 指定输出日志的文件名，默认输出至当前项目目录下
+  file:
+    name: springboot.log
+    path: /var/log
